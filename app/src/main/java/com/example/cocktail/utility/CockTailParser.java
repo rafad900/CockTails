@@ -22,12 +22,8 @@ public class CockTailParser {
             JSONObject response = new JSONObject(json);
             JSONArray matches = response.getJSONArray("ingredients");
             JSONObject first = matches.getJSONObject(0);
-            String ingredient = first.getString("strIngredient");
-            String description = first.getString("strDescription");
-            CockTailModel model = new CockTailModel();
-            model.setIngredientStr(ingredient);
-            model.setDescriptionStr(description);
-            Log.i("i and d", ingredient + " " + description);
+            CockTailModel model = new CockTailModel(first.getString("idIngredient"), first.getString("strIngredient"), first.getString("strDescription"),
+                    first.getString("strType"),first.getString("strAlcohol"), first.getString("strABV"));
             modelList.add(model);
 
         } catch (JSONException e) {

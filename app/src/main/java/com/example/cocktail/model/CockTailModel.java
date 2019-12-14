@@ -9,6 +9,15 @@ public class CockTailModel {
     private String alcoholStr;
     private String ABVStr;
 
+    public CockTailModel(String ingredientID, String ingredientStr, String descriptionStr, String typeStr, String alcoholStr, String ABVStr) {
+        this.ingredientID = ingredientID;
+        this.ingredientStr = ingredientStr;
+        this.descriptionStr = descriptionStr;
+        this.typeStr = typeStr;
+        this.alcoholStr = alcoholStr;
+        this.ABVStr = ABVStr;
+    }
+
     public String getIngredientID() {
         return ingredientID;
     }
