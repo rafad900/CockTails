@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">CockTail</string>
+    <string name="search">Search</string>
+    <string name="autofill">Search Alcohol</string>
+</resources>
