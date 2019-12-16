@@ -19,8 +19,7 @@ public class MainActivity extends AppCompatActivity {
 
     private EditText searchEditText;
     private Button searchButton;
-    private TextView ingredient;
-    private TextView description;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,10 +28,7 @@ public class MainActivity extends AppCompatActivity {
 
         searchEditText = findViewById(R.id.searchAlcohol);
         searchButton = findViewById(R.id.alcohol_search_button);
-        ingredient = findViewById(R.id.ingredient);
-        description = findViewById(R.id.description);
 
-        description.setMovementMethod(new ScrollingMovementMethod());
 
         searchButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -46,8 +42,6 @@ public class MainActivity extends AppCompatActivity {
                         }
                         CockTailModel first = model.get(0);
 
-                        ingredient.setText(first.getIngredientStr());
-                        description.setText("Description: " + first.getDescriptionStr());
                     }
                 });
 
