@@ -16,19 +16,21 @@ import com.example.cocktail.R;
 
 import java.util.ArrayList;
 
-public class RecyclerViewAlphabetNameActivity extends RecyclerView.Adapter<RecyclerViewAlphabetNameActivity.ViewHolder> {
+public class RecyclerViewAlphabetNameAdapter extends RecyclerView.Adapter<RecyclerViewAlphabetNameAdapter.ViewHolder> {
     private static final String TAG = "RecyclerViewAlphabetNam";
 
     private ArrayList<String> mAlphabet = new ArrayList<>();
     private Context mContext;
 
-    public void RecyclerViewAdapter(Context context) {
-        mContext = context;
+    public RecyclerViewAlphabetNameAdapter(Context context, ArrayList<String> alphabet) {
+        this.mContext = context;
+        this.mAlphabet = alphabet;
     }
 
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        // Inflate the layout that you want to be repeated
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.alphabet_recycler_name_activity, parent, false);
         ViewHolder holder = new ViewHolder(view);
         return holder;

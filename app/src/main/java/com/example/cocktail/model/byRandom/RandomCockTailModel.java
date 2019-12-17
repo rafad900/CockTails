@@ -18,6 +18,7 @@ public class RandomCockTailModel {
         this.imageURL = imageURL;
         this.alcoholic = alcoholic;
         this.instructions = instructions;
+        this.imageURL = imageURL;
     }
 
     public String getName() {

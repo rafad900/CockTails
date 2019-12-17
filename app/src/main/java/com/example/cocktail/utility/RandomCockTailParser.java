@@ -29,7 +29,7 @@ public class RandomCockTailParser {
             for (int i = 0; i < items.length(); i++) {
                 String key = items.getString(i);
                 String value = first.getString(key);
-                if (key.substring(0,12) == "strIngredient" && value != null) {
+                if (key.length() > 12 && key.substring(0,12) == "strIngredient" && value != null) {
                     ingredients.add(value);
                 }
             }
