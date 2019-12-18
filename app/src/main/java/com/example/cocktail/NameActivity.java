@@ -7,11 +7,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.TextView;
 
-import com.example.cocktail.utility.RecyclerViewAlphabetNameAdapter;
-
-import org.w3c.dom.Text;
+import com.example.cocktail.utility.RecyclerAdapters.RecyclerViewAlphabetNameAdapter;
+import com.example.cocktail.utility.RecyclerAdapters.RecyclerViewDrinkNameAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,6 +18,7 @@ public class NameActivity extends AppCompatActivity {
 
     private static final String TAG = "NameActivity";
     private final ArrayList<String> alphabet = new ArrayList<>();
+    private final ArrayList<String> name_drinks = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,15 +40,26 @@ public class NameActivity extends AppCompatActivity {
             char C = (char)c;
             alphabet.add(String.valueOf(C));
         }
-        initializeRecycler();
+        initializeLetterRecycler();
+        /* todo I have to make the onCLick listener in the other adapter, call the namesearch async task and return all the names that appear to this
+         todo activity*/
     }
 
-    private void initializeRecycler() {
+    private void initializeLetterRecycler() {
         Log.d(TAG, "initializeRecycler: Started THE RECYCLER");
         RecyclerView recyclerView = findViewById(R.id.name_activity_recycler);
         LinearLayoutManager layout = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
         RecyclerViewAlphabetNameAdapter adapter = new RecyclerViewAlphabetNameAdapter(this, alphabet);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(layout);
+    }
+
+    private void initializeDrinkNameRecycler() {
+        Log.d(TAG, "Started the second RECYCLER");
+        RecyclerView drinkRecyclerView = findViewById(R.id.name_drink_recycler);
+        LinearLayoutManager namelayout = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
+        RecyclerViewDrinkNameAdapter nameAdapter = new RecyclerViewDrinkNameAdapter(this, name_drinks);
+        drinkRecyclerView.setAdapter(nameAdapter);
+        drinkRecyclerView.setLayoutManager(namelayout);
     }
 }

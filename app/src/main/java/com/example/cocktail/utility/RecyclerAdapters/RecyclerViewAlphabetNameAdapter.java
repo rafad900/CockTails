@@ -1,4 +1,4 @@
-package com.example.cocktail.utility;
+package com.example.cocktail.utility.RecyclerAdapters;
 
 import android.content.Context;
 import android.util.Log;
