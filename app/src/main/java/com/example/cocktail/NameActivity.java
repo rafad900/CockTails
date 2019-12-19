@@ -18,7 +18,6 @@ public class NameActivity extends AppCompatActivity {
 
     private static final String TAG = "NameActivity";
     private final ArrayList<String> alphabet = new ArrayList<>();
-    private final ArrayList<String> name_drinks = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,25 +40,16 @@ public class NameActivity extends AppCompatActivity {
             alphabet.add(String.valueOf(C));
         }
         initializeLetterRecycler();
-        /* todo I have to make the onCLick listener in the other adapter, call the namesearch async task and return all the names that appear to this
-         todo activity*/
     }
 
     private void initializeLetterRecycler() {
         Log.d(TAG, "initializeRecycler: Started THE RECYCLER");
-        RecyclerView recyclerView = findViewById(R.id.name_activity_recycler);
+        RecyclerView recyclerView = this.findViewById(R.id.name_activity_recycler);
         LinearLayoutManager layout = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
         RecyclerViewAlphabetNameAdapter adapter = new RecyclerViewAlphabetNameAdapter(this, alphabet);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(layout);
+
     }
 
-    private void initializeDrinkNameRecycler() {
-        Log.d(TAG, "Started the second RECYCLER");
-        RecyclerView drinkRecyclerView = findViewById(R.id.name_drink_recycler);
-        LinearLayoutManager namelayout = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
-        RecyclerViewDrinkNameAdapter nameAdapter = new RecyclerViewDrinkNameAdapter(this, name_drinks);
-        drinkRecyclerView.setAdapter(nameAdapter);
-        drinkRecyclerView.setLayoutManager(namelayout);
-    }
 }

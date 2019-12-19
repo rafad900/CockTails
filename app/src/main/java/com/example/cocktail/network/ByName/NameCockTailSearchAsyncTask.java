@@ -28,7 +28,7 @@ public class NameCockTailSearchAsyncTask extends AsyncTask<String, Void, List<Na
     }
 
     public interface NameCockTailListener {
-        void nameContract (List<NameCockTailModel> mdoels);
+        void nameContract (List<NameCockTailModel> models);
     }
 
     public void setNameCockTailListener (NameCockTailListener listener) {
