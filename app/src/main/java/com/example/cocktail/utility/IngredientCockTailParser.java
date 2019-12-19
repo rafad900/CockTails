@@ -1,10 +1,8 @@
 package com.example.cocktail.utility;
 
-import android.nfc.Tag;
 import android.util.Log;
 
 import com.example.cocktail.model.byName.NameCockTailModel;
-import com.example.cocktail.model.byRandom.RandomCockTailModel;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -13,11 +11,10 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
-public class NameCockTailParser {
-    private static final String TAG = "NameCockTailParser";
+public class IngredientCockTailParser  {
+    private static final String TAG = "IngredientCockTailParse";
 
-    public static List<NameCockTailModel> getNameMatches(String json) {
-
+    public static List<NameCockTailModel> getIngredientMatches(String json) {
         List<NameCockTailModel> modelList = new ArrayList<>();
 
         try {
@@ -30,7 +27,7 @@ public class NameCockTailParser {
                 modelList.add(model);
             }
         } catch (JSONException e) {
-            Log.e(TAG, "getNameMatches: THERE WAS ERROR WITH NAME PARSING");
+            Log.e(TAG, "getIngredientMatches: THERE WAS ERROR WITH NAME PARSING");
         }
         return modelList;
     }

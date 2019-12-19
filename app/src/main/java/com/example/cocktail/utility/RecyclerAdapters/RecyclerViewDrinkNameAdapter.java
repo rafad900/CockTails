@@ -46,6 +46,7 @@ public class RecyclerViewDrinkNameAdapter extends RecyclerView.Adapter<RecyclerV
             @Override
             public void onClick(View v) {
                 Log.d(TAG, "NAME DRINK listener was clicked");
+                /*todo this needs to call the display drink class when pressed. Passing the id and making another URL call*/
                 Toast.makeText(mContext, mNames.get(position), Toast.LENGTH_SHORT).show();
             }
         });

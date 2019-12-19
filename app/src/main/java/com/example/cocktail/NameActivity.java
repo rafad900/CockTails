@@ -19,6 +19,9 @@ public class NameActivity extends AppCompatActivity {
     private static final String TAG = "NameActivity";
     private final ArrayList<String> alphabet = new ArrayList<>();
 
+    /*todo Maybe make the interface of this activity a little more pretty
+    *  connect it to the drink display class*/
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
