@@ -1,7 +1,12 @@
 package com.example.cocktail;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import android.content.Context;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.util.Log;
@@ -15,7 +20,10 @@ import com.example.cocktail.model.byRandom.RandomCockTailModel;
 import com.example.cocktail.network.URLImage.ImageCockTailSearchAsyncTask;
 import com.example.cocktail.network.byIngredient.IngredientCockTailSearchAsyncTask;
 import com.example.cocktail.network.byRandom.RandomCockTailSearchAsyncTask;
+import com.example.cocktail.utility.RecyclerAdapters.RecyclerViewAlphabetNameAdapter;
+import com.example.cocktail.utility.RecyclerAdapters.RecyclerViewIngredientAdapter;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class IngredientActivity extends AppCompatActivity {
@@ -59,17 +67,42 @@ public class IngredientActivity extends AppCompatActivity {
         });
         task.execute();
 
+
+        Log.d(TAG, "initializeRecycler: Started THE RECYCLER");
+        final RecyclerView recyclerView = this.findViewById(R.id.ingredient_drink_recycler);
+        LinearLayoutManager layout = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
+        recyclerView.setLayoutManager(layout);
+        recyclerView.setVisibility(View.GONE);
+        final ArrayList<String> names = new ArrayList<>();
+
         ingredientSearchButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                ingredientImageView.animate().alpha(0.0f).setDuration(300).setListener(new AnimatorListenerAdapter() {
+                    @Override
+                    public void onAnimationEnd(Animator animation) {
+                        super.onAnimationEnd(animation);
+                        ingredientImageView.setVisibility(View.GONE);
+                    }
+                });
                 IngredientCockTailSearchAsyncTask task = new IngredientCockTailSearchAsyncTask();
                 task.setIngredientCockTailListener(new IngredientCockTailSearchAsyncTask.IngredientCockTailListener() {
                     @Override
                     public void IngredientContract(List<NameCockTailModel> modelList) {
-                        ingredientImageView.setVisibility(View.GONE);
-                        /*todo: set the recycler view to the drinks made with this
-                        *  ingredient*/
-
+                        names.clear();
+                        for (int i = 0; i < modelList.size(); i++) {
+                            names.add(modelList.get(i).getName());
+                        }
+                        Log.d(TAG, "This is the size of the LIST and names: " + modelList.size() + " " + names.size());
+                        RecyclerViewIngredientAdapter adapter = new RecyclerViewIngredientAdapter(ingredientSearchButton.getContext(), names);
+                        recyclerView.setAdapter(adapter);
+                        recyclerView.animate().alpha(1.0f).setDuration(100).setListener(new AnimatorListenerAdapter() {
+                            @Override
+                            public void onAnimationEnd(Animator animation) {
+                                super.onAnimationEnd(animation);
+                                recyclerView.setVisibility(View.VISIBLE);
+                            }
+                        });
                     }
                 });
                 task.execute(ingredientSearchBar.getText().toString());

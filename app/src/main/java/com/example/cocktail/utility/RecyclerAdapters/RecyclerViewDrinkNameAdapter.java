@@ -19,7 +19,7 @@ import java.util.ArrayList;
 public class RecyclerViewDrinkNameAdapter extends RecyclerView.Adapter<RecyclerViewDrinkNameAdapter.ViewHolder> {
     private static final String TAG = "RecyclerViewDrinkNameAd";
 
-    private ArrayList<String> mNames = new ArrayList<>();
+    private ArrayList<String> mNames;
     private Context mContext;
 
     public RecyclerViewDrinkNameAdapter (Context context, ArrayList<String> names) {
@@ -38,7 +38,7 @@ public class RecyclerViewDrinkNameAdapter extends RecyclerView.Adapter<RecyclerV
     }
 
     @Override
-    public void onBindViewHolder(@NonNull RecyclerViewDrinkNameAdapter.ViewHolder holder, final int position) {
+    public void onBindViewHolder(@NonNull ViewHolder holder, final int position) {
         // This is what fills that layout once its inflated
         Log.d(TAG, "onBindHolder: FROM NAME WAS CALLED");
         holder.name.setText(mNames.get(position));

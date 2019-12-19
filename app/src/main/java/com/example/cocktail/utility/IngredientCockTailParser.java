@@ -27,7 +27,7 @@ public class IngredientCockTailParser  {
                 modelList.add(model);
             }
         } catch (JSONException e) {
-            Log.e(TAG, "getIngredientMatches: THERE WAS ERROR WITH NAME PARSING");
+            Log.e(TAG, "getIngredientMatches: THERE WAS ERROR WITH NAME PARSING, HERE IS THE JSON: " + json);
         }
         return modelList;
     }

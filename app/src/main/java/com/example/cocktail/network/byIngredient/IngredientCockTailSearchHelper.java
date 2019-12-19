@@ -11,7 +11,7 @@ import java.net.URL;
 public class IngredientCockTailSearchHelper {
 
     private static final String TAG = "IngredientCockTailSearc";
-    private static final String baseURL = "https://www.thecocktaildb.com/api/json/v1/1/filter.php?i=Gin";
+    private static final String baseURL = "https://www.thecocktaildb.com/api/json/v1/";
     private static final String apiKey = "1/";
     private static final String query = "filter.php?i=";
 
@@ -32,6 +32,7 @@ public class IngredientCockTailSearchHelper {
 
             String resp = response.toString();
             urlConnection.disconnect();
+            Log.d(TAG, "This was the query and the response: " + baseURL+apiKey+query+input + " " + resp);
             return resp;
         } catch (IOException e) {
             Log.e(TAG, "searchCockTails: ", e);

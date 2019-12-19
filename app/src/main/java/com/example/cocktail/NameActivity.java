@@ -52,7 +52,6 @@ public class NameActivity extends AppCompatActivity {
         RecyclerViewAlphabetNameAdapter adapter = new RecyclerViewAlphabetNameAdapter(this, alphabet);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(layout);
-
     }
 
 }
