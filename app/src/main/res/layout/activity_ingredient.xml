@@ -15,7 +15,7 @@
         android:layout_marginEnd="43dp"
         android:ems="10"
         android:inputType="textPersonName"
-        android:text="Name"
+        android:autofillHints="Ingredient"
         app:layout_constraintEnd_toStartOf="@+id/ingredientSearchButton"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

@@ -105,7 +105,9 @@ public class IngredientActivity extends AppCompatActivity {
                         });
                     }
                 });
-                task.execute(ingredientSearchBar.getText().toString());
+                String str = ingredientSearchBar.getText().toString();
+                str = str.substring(0, 1).toUpperCase() + str.substring(1).toLowerCase();
+                task.execute(str);
             }
         });
     }

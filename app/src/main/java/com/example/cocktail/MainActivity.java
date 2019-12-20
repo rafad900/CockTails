@@ -4,20 +4,13 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.os.Bundle;
-import android.text.method.ScrollingMovementMethod;
 import android.util.Log;
 import android.view.View;
-import android.view.Window;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.TextView;
 
-import com.example.cocktail.model.CockTailModel;
 import com.example.cocktail.model.byRandom.RandomCockTailModel;
-import com.example.cocktail.network.CockTailSearchAsyncTask;
 import com.example.cocktail.network.URLImage.ImageCockTailSearchAsyncTask;
 import com.example.cocktail.network.byRandom.RandomCockTailSearchAsyncTask;
 
@@ -31,8 +24,6 @@ public class MainActivity extends AppCompatActivity {
     private Button randomActivity;
     private Button nonAlcoholicActivity;
     private ImageView randomDrinkImage;
-    private BitmapFactory randomDrinkImageData;
-    private String randomDrinkID;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,8 +65,6 @@ public class MainActivity extends AppCompatActivity {
         nameActivity.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // I have to get the v.getcontext because the context within the on click interface is
-                // different from that of this MainActivity class
                 Intent intent = new Intent(v.getContext(), NameActivity.class);
                 v.getContext().startActivity(intent);
             }
@@ -89,6 +78,20 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-    }
+        nonAlcoholicActivity.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(v.getContext(), NonAlcoholicActivity.class);
+                v.getContext().startActivity(intent);
+            }
+        });
 
+        randomActivity.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(v.getContext(), RandomActivity.class);
+                v.getContext().startActivity(intent);
+            }
+        });
+    }
 }
