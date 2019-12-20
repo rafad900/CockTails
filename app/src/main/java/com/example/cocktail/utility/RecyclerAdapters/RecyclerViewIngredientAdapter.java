@@ -1,6 +1,7 @@
 package com.example.cocktail.utility.RecyclerAdapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,18 +13,25 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.cocktail.DrinkDisplayActivity;
 import com.example.cocktail.R;
 
 import java.util.ArrayList;
 
 public class RecyclerViewIngredientAdapter extends RecyclerView.Adapter<RecyclerViewIngredientAdapter.ViewHolder> {
     private static final String TAG = "RecyclerViewIngredientA";
+    private static final String IDNUMBER = "ID_NUMBER";
+    private static final String NAME = "DRINK_NAME";
 
     private ArrayList<String> mNames;
+    private ArrayList<String> mIDs;
     private Context mContext;
+    public String callingName = mContext.getApplicationContext().getClass().getSimpleName();
 
-    public RecyclerViewIngredientAdapter (Context context, ArrayList<String> names) {
+
+    public RecyclerViewIngredientAdapter (Context context, ArrayList<String> names, ArrayList<String> id) {
         this.mContext = context;
+        this.mIDs = id;
         this.mNames = names;
     }
 
@@ -44,8 +52,11 @@ public class RecyclerViewIngredientAdapter extends RecyclerView.Adapter<Recycler
             @Override
             public void onClick(View view) {
                 Log.d(TAG, "THE INGREDIENT LISTENER WAS CLICEKD");
-                Toast.makeText(mContext, mNames.get(position), Toast.LENGTH_SHORT).show();
-                /* todo I have to add the intent to the drink display activity here*/
+                Intent intent = new Intent(mContext, DrinkDisplayActivity.class);
+                intent.putExtra(IDNUMBER, mIDs.get(position));
+                intent.putExtra(NAME, mNames.get(position));
+                intent.putExtra("callingName", callingName);
+                mContext.startActivity(intent);
             }
         });
     }

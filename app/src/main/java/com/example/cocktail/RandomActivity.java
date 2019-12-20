@@ -2,6 +2,7 @@ package com.example.cocktail;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.util.Log;
@@ -13,11 +14,16 @@ import com.example.cocktail.model.byRandom.RandomCockTailModel;
 import com.example.cocktail.network.URLImage.ImageCockTailSearchAsyncTask;
 import com.example.cocktail.network.byRandom.RandomCockTailSearchAsyncTask;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.jar.Attributes;
 
 public class RandomActivity extends AppCompatActivity {
 
     private static final String TAG = "RandomActivity";
+    private static final String IDNUMBER = "ID_NUMBER";
+    private static final String NAME = "DRINK_NAME";
+    public String callingName = RandomActivity.class.getSimpleName();
     private ImageView randomImageHolder;
 
     @Override
@@ -32,11 +38,13 @@ public class RandomActivity extends AppCompatActivity {
         setContentView(R.layout.activity_random);
 
         randomImageHolder = findViewById(R.id.random_image_holder);
+        final ArrayList<RandomCockTailModel> model_holder = new ArrayList<RandomCockTailModel>();
 
         RandomCockTailSearchAsyncTask task = new RandomCockTailSearchAsyncTask();
         task.setRandomCockTailListener(new RandomCockTailSearchAsyncTask.RandomCockTailListener() {
             @Override
             public void randomContract(List<RandomCockTailModel> models) {
+                model_holder.add(models.get(0));
                 RandomCockTailModel model = models.get(0);
                 String imageURL = model.getImageURL();
                 Log.d(TAG, imageURL);
@@ -55,9 +63,12 @@ public class RandomActivity extends AppCompatActivity {
         randomImageHolder.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(v.getContext(), "The image was pressed", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(randomImageHolder.getContext(), DrinkDisplayActivity.class);
+                intent.putExtra(IDNUMBER, model_holder.get(0).getId());
+                intent.putExtra(NAME, model_holder.get(0).getName());
+                intent.putExtra("activity", callingName);
+                randomImageHolder.getContext().startActivity(intent);
             }
         });
-
     }
 }

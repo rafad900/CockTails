@@ -26,6 +26,7 @@ public class RecyclerViewAlphabetNameAdapter extends RecyclerView.Adapter<Recycl
 
     private ArrayList<String> mAlphabet;
     private ArrayList<String> name_drinks = new ArrayList<>();
+    private ArrayList<String> mID = new ArrayList<>();
 
     private Context mContext;
 
@@ -57,12 +58,14 @@ public class RecyclerViewAlphabetNameAdapter extends RecyclerView.Adapter<Recycl
                     @Override
                     public void nameContract(List<NameCockTailModel> models) {
                         name_drinks.clear();
+                        mID.clear();
                         for (int i = 0; i < models.size(); i++) {
                             name_drinks.add(models.get(i).getName());
+                            mID.add(models.get(i).getId());
                         }
                         RecyclerView drinkRecyclerView = ((Activity) mContext).findViewById(R.id.name_drink_recycler);
                         LinearLayoutManager namelayout = new LinearLayoutManager(mContext, LinearLayoutManager.VERTICAL, false);
-                        RecyclerViewDrinkNameAdapter nameAdapter = new RecyclerViewDrinkNameAdapter(mContext, name_drinks);
+                        RecyclerViewDrinkNameAdapter nameAdapter = new RecyclerViewDrinkNameAdapter(mContext, name_drinks, mID);
                         if (drinkRecyclerView == null) {
                             Log.d(TAG, "The drinkRecyclerView is null");
                         }

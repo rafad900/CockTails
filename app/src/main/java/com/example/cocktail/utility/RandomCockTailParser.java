@@ -2,7 +2,6 @@ package com.example.cocktail.utility;
 
 import android.util.Log;
 
-import com.example.cocktail.model.CockTailModel;
 import com.example.cocktail.model.byRandom.RandomCockTailModel;
 
 import org.json.JSONArray;

@@ -26,6 +26,7 @@
         android:layout_marginStart="57dp"
         android:layout_marginTop="1dp"
         android:layout_marginEnd="58dp"
+        android:contentDescription="Drink Image"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/name_of_drink"
@@ -42,18 +43,20 @@
         app:layout_constraintTop_toBottomOf="@+id/drink_picture_holder">
 
         <Button
-            android:id="@+id/button"
+            android:id="@+id/ingredient_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Button" />
+            android:text="Ingredients"
+            android:textColor="@android:color/black" />
 
         <Button
-            android:id="@+id/button2"
+            android:id="@+id/instructions_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Button" />
+            android:text="Instructions"
+            android:textColor="@android:color/black" />
     </LinearLayout>
 
     <TextView

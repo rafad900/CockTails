@@ -74,6 +74,7 @@ public class IngredientActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(layout);
         recyclerView.setVisibility(View.GONE);
         final ArrayList<String> names = new ArrayList<>();
+        final ArrayList<String> mID = new ArrayList<>();
 
         ingredientSearchButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -90,11 +91,13 @@ public class IngredientActivity extends AppCompatActivity {
                     @Override
                     public void IngredientContract(List<NameCockTailModel> modelList) {
                         names.clear();
+                        mID.clear();
                         for (int i = 0; i < modelList.size(); i++) {
                             names.add(modelList.get(i).getName());
+                            mID.add(modelList.get(i).getId());
                         }
                         Log.d(TAG, "This is the size of the LIST and names: " + modelList.size() + " " + names.size());
-                        RecyclerViewIngredientAdapter adapter = new RecyclerViewIngredientAdapter(ingredientSearchButton.getContext(), names);
+                        RecyclerViewIngredientAdapter adapter = new RecyclerViewIngredientAdapter(ingredientSearchButton.getContext(), names, mID);
                         recyclerView.setAdapter(adapter);
                         recyclerView.animate().alpha(1.0f).setDuration(100).setListener(new AnimatorListenerAdapter() {
                             @Override

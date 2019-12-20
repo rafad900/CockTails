@@ -2,33 +2,44 @@ package com.example.cocktail.utility;
 
 import android.util.Log;
 
-import com.example.cocktail.model.CockTailModel;
+import com.example.cocktail.model.byRandom.RandomCockTailModel;
 
-import java.util.List;
-import java.util.ArrayList;
-import org.json.JSONObject;
 import org.json.JSONArray;
 import org.json.JSONException;
+import org.json.JSONObject;
 
+import java.util.ArrayList;
 
 public class CockTailParser {
     private static final String TAG = "CockTailParser";
 
-    public static List<CockTailModel> getMatches(String json) {
-
-        List<CockTailModel> modelList = new ArrayList<>();
+    public static RandomCockTailModel getCockTailMatch(String json) {
+        RandomCockTailModel model = null;
+        ArrayList<String> ingredients = new ArrayList<>();
 
         try {
             JSONObject response = new JSONObject(json);
-            JSONArray matches = response.getJSONArray("ingredients");
+            JSONArray matches = response.getJSONArray("drinks");
             JSONObject first = matches.getJSONObject(0);
-            CockTailModel model = new CockTailModel(first.getString("idIngredient"), first.getString("strIngredient"), first.getString("strDescription"),
-                    first.getString("strType"),first.getString("strAlcohol"), first.getString("strABV"));
-            modelList.add(model);
+            JSONArray items = first.names();
+
+            // This grabs all the ingredients from the json object
+            for (int i = 0; i < items.length(); i++) {
+                String key = items.getString(i);
+                String value = first.getString(key);
+                if (key.length() > 12 && key.substring(0,12) == "strIngredient" && value != null) {
+                    ingredients.add(value);
+                }
+            }
+
+            // Creating the model for the random object
+            model = new RandomCockTailModel(first.getString("strDrink"), ingredients,
+                    first.getString("idDrink"), first.getString("strInstructions"), first.getString("strDrinkThumb"),
+                    first.getString("strAlcoholic"));
 
         } catch (JSONException e) {
             Log.e(TAG, "getMatches: THERE WAS AN ERROR PARSING JSON THIS IS FROM THE CLASS");
         }
-        return modelList;
+        return model;
     }
 }

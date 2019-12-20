@@ -19,7 +19,8 @@ import java.util.List;
 public class NonAlcoholicActivity extends AppCompatActivity {
 
     private static final String TAG = "NonAlcoholicActivity";
-    private static final ArrayList<String> names = new ArrayList<>();
+    private ArrayList<String> names = new ArrayList<>();
+    private ArrayList<String> mID = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,14 +43,15 @@ public class NonAlcoholicActivity extends AppCompatActivity {
             @Override
             public void non_alcoholicContract(List<NameCockTailModel> models) {
                 names.clear();
+                mID.clear();
                 for (int i = 0; i < models.size(); i++) {
                     names.add(models.get(i).getName());
+                    mID.add(models.get(i).getId());
                 }
-                RecyclerViewNon_AlcoholicAdapter adapter = new RecyclerViewNon_AlcoholicAdapter(context, names);
+                RecyclerViewNon_AlcoholicAdapter adapter = new RecyclerViewNon_AlcoholicAdapter(context, names, mID);
                 non_alcoholic_recycler.setAdapter(adapter);
             }
         });
-
         task.execute();
 
     }

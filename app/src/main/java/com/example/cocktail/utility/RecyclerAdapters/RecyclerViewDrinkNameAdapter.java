@@ -1,28 +1,34 @@
 package com.example.cocktail.utility.RecyclerAdapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.cocktail.DrinkDisplayActivity;
 import com.example.cocktail.R;
 
 import java.util.ArrayList;
 
 public class RecyclerViewDrinkNameAdapter extends RecyclerView.Adapter<RecyclerViewDrinkNameAdapter.ViewHolder> {
     private static final String TAG = "RecyclerViewDrinkNameAd";
+    private static final String IDNUMBER = "ID_NUMBER";
+    private static final String NAME = "DRINK_NAME";
 
     private ArrayList<String> mNames;
     private Context mContext;
+    private ArrayList<String> mID;
+    public String callingName = mContext.getClass().getSimpleName();
 
-    public RecyclerViewDrinkNameAdapter (Context context, ArrayList<String> names) {
+    public RecyclerViewDrinkNameAdapter (Context context, ArrayList<String> names, ArrayList<String> id) {
+        this.mID = id;
         this.mContext = context;
         this.mNames = names;
 
@@ -46,8 +52,11 @@ public class RecyclerViewDrinkNameAdapter extends RecyclerView.Adapter<RecyclerV
             @Override
             public void onClick(View v) {
                 Log.d(TAG, "NAME DRINK listener was clicked");
-                /*todo this needs to call the display drink class when pressed. Passing the id and making another URL call*/
-                Toast.makeText(mContext, mNames.get(position), Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(mContext, DrinkDisplayActivity.class);
+                intent.putExtra(IDNUMBER, mID.get(position));
+                intent.putExtra(NAME, mNames.get(position));
+                intent.putExtra("callingName", callingName);
+                mContext.startActivity(intent);
             }
         });
     }
