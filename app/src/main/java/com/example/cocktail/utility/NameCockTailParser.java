@@ -24,6 +24,7 @@ public class NameCockTailParser {
             JSONObject response = new JSONObject(json);
             JSONArray matches = response.getJSONArray("drinks");
             JSONObject array;
+
             for (int i = 0; i < matches.length(); i++) {
                 array = matches.getJSONObject(i);
                 NameCockTailModel model = new NameCockTailModel(array.getString("strDrink"),array.getString("idDrink"));

@@ -11,7 +11,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".RandomActivity"></activity>
+        <activity android:name=".DrinkDisplayActivity"></activity>
+        <activity android:name=".RandomActivity" />
         <activity android:name=".NonAlcoholicActivity" />
         <activity android:name=".IngredientActivity" />
         <activity android:name=".NameActivity" />
