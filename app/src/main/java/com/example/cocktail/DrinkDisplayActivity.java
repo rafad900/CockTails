@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -19,6 +20,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class DrinkDisplayActivity extends AppCompatActivity {
+    private static final String TAG = "DrinkDisplayActivity";
 
     private ImageView cockTailImageHolder;
     private Button intructionButton;
@@ -31,6 +33,7 @@ public class DrinkDisplayActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_drink_display);
 
@@ -53,20 +56,22 @@ public class DrinkDisplayActivity extends AppCompatActivity {
                 ingredients = model.getIngrients();
                 instructions = model.getInstructions();
                 imageURL = model.getImageURL();
+                ImageCockTailSearchAsyncTask imagetask = new ImageCockTailSearchAsyncTask();
+                imagetask.setImageListener(new ImageCockTailSearchAsyncTask.ImageCockTailListener() {
+                    @Override
+                    public void ImageContract(Bitmap image) {
+                        cockTailImageHolder.setImageBitmap(image);
+                    }
+                });
+
+                imagetask.execute(imageURL);
+                Log.d(TAG, "HERE IS THE IMAGE URL: " + imageURL);
             }
         });
 
+        Log.d(TAG, "HERE IS THE IMAGE URL AFTER: " + imageURL);
         task.execute(id);
 
-        ImageCockTailSearchAsyncTask imagetask = new ImageCockTailSearchAsyncTask();
-        imagetask.setImageListener(new ImageCockTailSearchAsyncTask.ImageCockTailListener() {
-            @Override
-            public void ImageContract(Bitmap image) {
-                cockTailImageHolder.setImageBitmap(image);
-            }
-        });
-
-        imagetask.execute(imageURL);
 
         ingredientButton.setOnClickListener(new View.OnClickListener() {
             @Override

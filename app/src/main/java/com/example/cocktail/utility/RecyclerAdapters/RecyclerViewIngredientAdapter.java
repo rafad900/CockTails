@@ -26,7 +26,6 @@ public class RecyclerViewIngredientAdapter extends RecyclerView.Adapter<Recycler
     private ArrayList<String> mNames;
     private ArrayList<String> mIDs;
     private Context mContext;
-    public String callingName = mContext.getApplicationContext().getClass().getSimpleName();
 
 
     public RecyclerViewIngredientAdapter (Context context, ArrayList<String> names, ArrayList<String> id) {
@@ -55,7 +54,6 @@ public class RecyclerViewIngredientAdapter extends RecyclerView.Adapter<Recycler
                 Intent intent = new Intent(mContext, DrinkDisplayActivity.class);
                 intent.putExtra(IDNUMBER, mIDs.get(position));
                 intent.putExtra(NAME, mNames.get(position));
-                intent.putExtra("callingName", callingName);
                 mContext.startActivity(intent);
             }
         });

@@ -16,14 +16,13 @@ import com.example.cocktail.network.byRandom.RandomCockTailSearchAsyncTask;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.jar.Attributes;
+
 
 public class RandomActivity extends AppCompatActivity {
 
     private static final String TAG = "RandomActivity";
     private static final String IDNUMBER = "ID_NUMBER";
     private static final String NAME = "DRINK_NAME";
-    public String callingName = RandomActivity.class.getSimpleName();
     private ImageView randomImageHolder;
 
     @Override
@@ -66,7 +65,6 @@ public class RandomActivity extends AppCompatActivity {
                 Intent intent = new Intent(randomImageHolder.getContext(), DrinkDisplayActivity.class);
                 intent.putExtra(IDNUMBER, model_holder.get(0).getId());
                 intent.putExtra(NAME, model_holder.get(0).getName());
-                intent.putExtra("activity", callingName);
                 randomImageHolder.getContext().startActivity(intent);
             }
         });

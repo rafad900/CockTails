@@ -18,7 +18,8 @@ public class ImageCockTailSearchHelper {
             return mIcon_val;
 
         } catch (IOException e) {
-            Log.e(TAG, "searchCockTails: ", e);
+            Log.e(TAG, "searchCockTails: ", e );
+            Log.d(TAG, "searchCockTails: HERE IS THE IMAGE URL: " + imageURL);
         }
         return null;
     }

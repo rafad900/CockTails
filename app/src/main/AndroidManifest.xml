@@ -11,12 +11,18 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".DrinkDisplayActivity"></activity>
-        <activity android:name=".RandomActivity" />
-        <activity android:name=".NonAlcoholicActivity" />
-        <activity android:name=".IngredientActivity" />
-        <activity android:name=".NameActivity" />
-        <activity android:name=".MainActivity">
+        <activity android:name=".DrinkDisplayActivity"
+            android:windowSoftInputMode="adjustPan"/>
+        <activity android:name=".RandomActivity"
+            android:windowSoftInputMode="adjustPan"/>
+        <activity android:name=".NonAlcoholicActivity"
+            android:windowSoftInputMode="adjustPan"/>
+        <activity android:name=".IngredientActivity"
+            android:windowSoftInputMode="adjustPan"/>
+        <activity android:name=".NameActivity"
+            android:windowSoftInputMode="adjustPan"/>
+        <activity android:name=".MainActivity"
+            android:windowSoftInputMode="adjustPan">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

@@ -36,7 +36,6 @@ public class RecyclerViewNon_AlcoholicAdapter  extends RecyclerView.Adapter<Recy
         this.id_drinks = id;
         this.name_drinks = names;
     }
-    public String callingName = mContext.getApplicationContext().getClass().getSimpleName();
 
     @NonNull
     @Override
@@ -56,7 +55,6 @@ public class RecyclerViewNon_AlcoholicAdapter  extends RecyclerView.Adapter<Recy
                 Intent intent = new Intent(mContext, DrinkDisplayActivity.class);
                 intent.putExtra(IDNUMBER, id_drinks.get(position));
                 intent.putExtra(NAME, name_drinks.get(position));
-                intent.putExtra("callingName", callingName);
                 mContext.startActivity(intent);
             }
         });
