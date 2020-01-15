@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.cocktail">
+    package="com.myveryown.cocktail">
 
     <uses-permission android:name="android.permission.INTERNET" />
 
@@ -11,18 +11,18 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".DrinkDisplayActivity"
+        <activity android:name="com.myveryown.cocktail.DrinkDisplayActivity"
+            android:windowSoftInputMode="adjustNothing"/>
+        <activity android:name="com.myveryown.cocktail.RandomActivity"
             android:windowSoftInputMode="adjustPan"/>
-        <activity android:name=".RandomActivity"
+        <activity android:name="com.myveryown.cocktail.NonAlcoholicActivity"
             android:windowSoftInputMode="adjustPan"/>
-        <activity android:name=".NonAlcoholicActivity"
+        <activity android:name="com.myveryown.cocktail.IngredientActivity"
             android:windowSoftInputMode="adjustPan"/>
-        <activity android:name=".IngredientActivity"
+        <activity android:name="com.myveryown.cocktail.NameActivity"
             android:windowSoftInputMode="adjustPan"/>
-        <activity android:name=".NameActivity"
-            android:windowSoftInputMode="adjustPan"/>
-        <activity android:name=".MainActivity"
-            android:windowSoftInputMode="adjustPan">
+        <activity android:name="com.myveryown.cocktail.MainActivity"
+            android:windowSoftInputMode="adjustNothing">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
