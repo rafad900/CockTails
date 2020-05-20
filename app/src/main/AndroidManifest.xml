@@ -22,7 +22,7 @@
         <activity android:name="com.myveryown.cocktail.NameActivity"
             android:windowSoftInputMode="adjustPan"/>
         <activity android:name="com.myveryown.cocktail.MainActivity"
-            android:windowSoftInputMode="adjustNothing">
+            android:windowSoftInputMode="stateAlwaysHidden">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

@@ -14,8 +14,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 
-import com.myveryown.cocktail.model.byName.NameCockTailModel;
-import com.myveryown.cocktail.model.byRandom.RandomCockTailModel;
+
+import com.myveryown.cocktail.model.CockTailModel;
 import com.myveryown.cocktail.network.URLImage.ImageCockTailSearchAsyncTask;
 import com.myveryown.cocktail.network.byIngredient.IngredientCockTailSearchAsyncTask;
 import com.myveryown.cocktail.network.byRandom.RandomCockTailSearchAsyncTask;
@@ -28,43 +28,15 @@ public class IngredientActivity extends AppCompatActivity {
     private static final String TAG = "IngredientActivity";
     private Button ingredientSearchButton;
     private EditText ingredientSearchBar;
-    private ImageView ingredientImageView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        try {
-            getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_HIDE_NAVIGATION);
-            this.getSupportActionBar().hide();
-        } catch (NullPointerException e){
-            Log.d(TAG, "The action bar didn't hide");
-        }
+
         setContentView(R.layout.activity_ingredient);
 
         ingredientSearchButton = findViewById(R.id.ingredientSearchButton);
         ingredientSearchBar = findViewById(R.id.ingredientSearchBar);
-        ingredientImageView = findViewById(R.id.ingredientRandomImage);
-
-        RandomCockTailSearchAsyncTask task = new RandomCockTailSearchAsyncTask();
-        task.setRandomCockTailListener(new RandomCockTailSearchAsyncTask.RandomCockTailListener() {
-            @Override
-            public void randomContract(List<RandomCockTailModel> models) {
-                RandomCockTailModel model = models.get(0);
-                String imageURL = model.getImageURL();
-                Log.d(TAG, imageURL);
-                ImageCockTailSearchAsyncTask imagetask = new ImageCockTailSearchAsyncTask();
-                imagetask.setImageListener(new ImageCockTailSearchAsyncTask.ImageCockTailListener() {
-                    @Override
-                    public void ImageContract(Bitmap image) {
-                        ingredientImageView.setImageBitmap(image);
-                        /*todo: make the image an ingredient, not an actual drink*/
-                    }
-                });
-                imagetask.execute(imageURL);
-            }
-        });
-        task.execute();
-
 
         Log.d(TAG, "initializeRecycler: Started THE RECYCLER");
         final RecyclerView recyclerView = this.findViewById(R.id.ingredient_drink_recycler);
@@ -77,17 +49,10 @@ public class IngredientActivity extends AppCompatActivity {
         ingredientSearchButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ingredientImageView.animate().alpha(0.0f).setDuration(300).setListener(new AnimatorListenerAdapter() {
-                    @Override
-                    public void onAnimationEnd(Animator animation) {
-                        super.onAnimationEnd(animation);
-                        ingredientImageView.setVisibility(View.GONE);
-                    }
-                });
                 IngredientCockTailSearchAsyncTask task = new IngredientCockTailSearchAsyncTask();
                 task.setIngredientCockTailListener(new IngredientCockTailSearchAsyncTask.IngredientCockTailListener() {
                     @Override
-                    public void IngredientContract(List<NameCockTailModel> modelList) {
+                    public void IngredientContract(List<CockTailModel> modelList) {
                         names.clear();
                         mID.clear();
                         for (int i = 0; i < modelList.size(); i++) {

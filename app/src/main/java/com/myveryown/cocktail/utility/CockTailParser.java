@@ -2,7 +2,7 @@ package com.myveryown.cocktail.utility;
 
 import android.util.Log;
 
-import com.myveryown.cocktail.model.byRandom.RandomCockTailModel;
+import com.myveryown.cocktail.model.CockTailModel;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -13,8 +13,8 @@ import java.util.ArrayList;
 public class CockTailParser {
     private static final String TAG = "CockTailParser";
 
-    public static RandomCockTailModel getCockTailMatch(String json) {
-        RandomCockTailModel model = null;
+    public static CockTailModel getCockTailMatch(String json) {
+        CockTailModel model = null;
         ArrayList<String> ingredients = new ArrayList<>();
 
         try {
@@ -33,7 +33,7 @@ public class CockTailParser {
             }
 
             // Creating the model for the random object
-            model = new RandomCockTailModel(first.getString("strDrink"), ingredients,
+            model = new CockTailModel(first.getString("strDrink"), ingredients,
                     first.getString("idDrink"), first.getString("strInstructions"), first.getString("strDrinkThumb"),
                     first.getString("strAlcoholic"));
 

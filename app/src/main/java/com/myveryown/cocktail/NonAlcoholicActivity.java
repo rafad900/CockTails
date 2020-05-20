@@ -9,7 +9,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 
-import com.myveryown.cocktail.model.byName.NameCockTailModel;
+import com.myveryown.cocktail.model.CockTailModel;
 import com.myveryown.cocktail.network.ByNonAlcoholic.NonAcoholicCockTailSearchAsyncTask;
 import com.myveryown.cocktail.utility.RecyclerAdapters.RecyclerViewNon_AlcoholicAdapter;
 
@@ -41,7 +41,7 @@ public class NonAlcoholicActivity extends AppCompatActivity {
         NonAcoholicCockTailSearchAsyncTask task = new NonAcoholicCockTailSearchAsyncTask();
         task.setNon_AlcoholicListener(new NonAcoholicCockTailSearchAsyncTask.Non_AlcoholicListener() {
             @Override
-            public void non_alcoholicContract(List<NameCockTailModel> models) {
+            public void non_alcoholicContract(List<CockTailModel> models) {
                 names.clear();
                 mID.clear();
                 for (int i = 0; i < models.size(); i++) {

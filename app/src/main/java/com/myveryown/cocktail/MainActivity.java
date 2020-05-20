@@ -10,7 +10,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 
-import com.myveryown.cocktail.model.byRandom.RandomCockTailModel;
+import com.myveryown.cocktail.model.CockTailModel;
 import com.myveryown.cocktail.network.URLImage.ImageCockTailSearchAsyncTask;
 import com.myveryown.cocktail.network.byRandom.RandomCockTailSearchAsyncTask;
 
@@ -28,12 +28,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        try {
-            getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_HIDE_NAVIGATION);
-            this.getSupportActionBar().hide();
-        } catch (NullPointerException e){
-            Log.d(TAG, "The action bar didn't hide");
-        }
+
         setContentView(R.layout.activity_main);
 
         nameActivity = findViewById(R.id.name_search);
@@ -46,8 +41,8 @@ public class MainActivity extends AppCompatActivity {
         RandomCockTailSearchAsyncTask task = new RandomCockTailSearchAsyncTask();
         task.setRandomCockTailListener(new RandomCockTailSearchAsyncTask.RandomCockTailListener() {
             @Override
-            public void randomContract(List<RandomCockTailModel> models) {
-                RandomCockTailModel model = models.get(0);
+            public void randomContract(List<CockTailModel> models) {
+                CockTailModel model = models.get(0);
                 String imageURL = model.getImageURL();
                 Log.d(TAG, imageURL);
                 ImageCockTailSearchAsyncTask imagetask = new ImageCockTailSearchAsyncTask();

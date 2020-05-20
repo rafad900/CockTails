@@ -2,7 +2,7 @@ package com.myveryown.cocktail.utility;
 
 import android.util.Log;
 
-import com.myveryown.cocktail.model.byName.NameCockTailModel;
+import com.myveryown.cocktail.model.CockTailModel;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -14,8 +14,8 @@ import java.util.List;
 public class IngredientCockTailParser  {
     private static final String TAG = "IngredientCockTailParse";
 
-    public static List<NameCockTailModel> getIngredientMatches(String json) {
-        List<NameCockTailModel> modelList = new ArrayList<>();
+    public static List<CockTailModel> getIngredientMatches(String json) {
+        List<CockTailModel> modelList = new ArrayList<>();
 
         try {
             JSONObject response = new JSONObject(json);
@@ -23,7 +23,7 @@ public class IngredientCockTailParser  {
             JSONObject array;
             for (int i = 0; i < matches.length(); i++) {
                 array = matches.getJSONObject(i);
-                NameCockTailModel model = new NameCockTailModel(array.getString("strDrink"),array.getString("idDrink"));
+                CockTailModel model = new CockTailModel(array.getString("strDrink"),array.getString("idDrink"));
                 modelList.add(model);
             }
         } catch (JSONException e) {

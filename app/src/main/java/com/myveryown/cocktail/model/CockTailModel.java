@@ -1,8 +1,8 @@
-package com.myveryown.cocktail.model.byRandom;
+package com.myveryown.cocktail.model;
 
 import java.util.List;
 
-public class RandomCockTailModel {
+public class CockTailModel {
 
     String name;
     String id;
@@ -11,16 +11,23 @@ public class RandomCockTailModel {
     String imageURL;
     String alcoholic;
 
-    public RandomCockTailModel(String name, List<String> ingredients, String id, String instructions, String imageURL, String alcoholic) {
+    public CockTailModel(String name, List<String> ingredients, String id, String instructions, String imageURL, String alcoholic) {
         this.name = name;
         this.id = id;
         this.ingrients = ingredients;
         this.imageURL = imageURL;
         this.alcoholic = alcoholic;
         this.instructions = instructions;
-        this.imageURL = imageURL;
     }
 
+    public CockTailModel(String name, String id) {
+        this.name = name;
+        this.id = id;
+        this.ingrients = null;
+        this.imageURL = "";
+        this.alcoholic = "";
+        this.instructions = "";
+    }
     public String getName() {
         return name;
     }

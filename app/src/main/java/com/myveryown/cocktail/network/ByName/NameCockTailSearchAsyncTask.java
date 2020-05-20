@@ -2,33 +2,33 @@ package com.myveryown.cocktail.network.ByName;
 
 import android.os.AsyncTask;
 
-import com.myveryown.cocktail.model.byName.NameCockTailModel;
+import com.myveryown.cocktail.model.CockTailModel;
 import com.myveryown.cocktail.utility.NameCockTailParser;
 
 import java.util.List;
 
-public class NameCockTailSearchAsyncTask extends AsyncTask<String, Void, List<NameCockTailModel>> {
+public class NameCockTailSearchAsyncTask extends AsyncTask<String, Void, List<CockTailModel>> {
     private NameCockTailListener listener;
 
     @Override
-    protected List<NameCockTailModel> doInBackground(String... strings) {
+    protected List<CockTailModel> doInBackground(String... strings) {
         String response = NameCockTailSearchHelper.searchNameCockTail(strings[0]);
 
         if (response != null) {
-            List<NameCockTailModel> models = NameCockTailParser.getNameMatches(response);
+            List<CockTailModel> models = NameCockTailParser.getNameMatches(response);
             return models;
         }
         return null;
     }
 
     @Override
-    protected void onPostExecute(List<NameCockTailModel> models) {
+    protected void onPostExecute(List<CockTailModel> models) {
         super.onPostExecute(models);
         listener.nameContract(models);
     }
 
     public interface NameCockTailListener {
-        void nameContract (List<NameCockTailModel> models);
+        void nameContract (List<CockTailModel> models);
     }
 
     public void setNameCockTailListener (NameCockTailListener listener) {

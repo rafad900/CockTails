@@ -2,4 +2,12 @@
     <string name="app_name">CockTail</string>
     <string name="search">Search</string>
     <string name="autofill">Search Alcohol</string>
+    <string name="Drink_of_the_day">Drink of the day</string>
+    <string name="main_option1">Search by name</string>
+    <string name="main_option2">Search by ingredient</string>
+    <string name="main_option3">Non-Alcoholic</string>
+    <string name="main_option4">Random Drink</string>
+    <string name="default_image_cdb">Default Image CDB</string>
+    <string name="string_search">Search</string>
+
 </resources>

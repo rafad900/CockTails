@@ -1,78 +1,104 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".MainActivity"
+    android:orientation="vertical">
 
-    <Button
-        android:id="@+id/name_search"
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/main_toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:layout_marginBottom="7dp"
-        android:text="Search by name"
-        app:layout_constraintBottom_toTopOf="@+id/ingredient_search"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/randomMainDrinkImage" />
+        android:elevation="4dp"
+        android:background="@color/strong_red">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/app_name"
+            android:gravity="center"
+            android:textSize="32sp"
+            android:textColor="@color/white">
+        </TextView>
+    </androidx.appcompat.widget.Toolbar>
 
-    <Button
-        android:id="@+id/ingredient_search"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Search by ingredient"
-        app:layout_constraintBottom_toTopOf="@+id/non_alcoholic_search"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/name_search" />
+        android:layout_height="match_parent">
 
-    <Button
-        android:id="@+id/non_alcoholic_search"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Non-Alcoholic"
-        app:layout_constraintBottom_toTopOf="@+id/random_search"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ingredient_search" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:showDividers="middle"
+            android:divider="@drawable/divider_for_main">
 
-    <Button
-        android:id="@+id/random_search"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="91dp"
-        android:text="Random drink"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/non_alcoholic_search" />
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/Drink_of_the_day"
+                android:textAlignment="center"
+                android:textColor="@android:color/black"
+                android:textSize="30sp" />
 
-    <ImageView
-        android:id="@+id/randomMainDrinkImage"
-        android:layout_width="377dp"
-        android:layout_height="329dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="7dp"
-        android:layout_marginEnd="18dp"
-        android:layout_marginBottom="24dp"
-        app:layout_constraintBottom_toTopOf="@+id/name_search"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView"
-        app:srcCompat="@mipmap/ic_launcher" />
+            <ImageView
+                android:id="@+id/randomMainDrinkImage"
+                android:layout_width="377dp"
+                android:layout_height="329dp"
+                app:srcCompat="@mipmap/ic_launcher"
+                android:layout_gravity="center"
+                android:contentDescription="@string/default_image_cdb" />
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="CockTails"
-        android:textAlignment="center"
-        android:textColor="@android:color/black"
-        android:textSize="30sp"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:layout_editor_absoluteX="139dp" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:showDividers="middle"
+                android:divider="@drawable/divider_for_main_buttons">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+                <Button
+                    android:id="@+id/name_search"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/main_option1"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:textColor="@color/white"
+                    android:background="@drawable/rounded_corners"/>
+
+                <Button
+                    android:id="@+id/ingredient_search"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/main_option2"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:textColor="@color/white"
+                    android:background="@drawable/rounded_corners"/>
+
+                <Button
+                    android:id="@+id/non_alcoholic_search"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/main_option3"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:textColor="@color/white"
+                    android:background="@drawable/rounded_corners"/>
+
+                <Button
+                    android:id="@+id/random_search"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/main_option4"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:textColor="@color/white"
+                    android:background="@drawable/rounded_corners"/>
+
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

@@ -9,7 +9,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 
-import com.myveryown.cocktail.model.byRandom.RandomCockTailModel;
+import com.myveryown.cocktail.model.CockTailModel;
 import com.myveryown.cocktail.network.URLImage.ImageCockTailSearchAsyncTask;
 import com.myveryown.cocktail.network.byRandom.RandomCockTailSearchAsyncTask;
 
@@ -36,14 +36,14 @@ public class RandomActivity extends AppCompatActivity {
         setContentView(R.layout.activity_random);
 
         randomImageHolder = findViewById(R.id.random_image_holder);
-        final ArrayList<RandomCockTailModel> model_holder = new ArrayList<RandomCockTailModel>();
+        final ArrayList<CockTailModel> model_holder = new ArrayList<CockTailModel>();
 
         RandomCockTailSearchAsyncTask task = new RandomCockTailSearchAsyncTask();
         task.setRandomCockTailListener(new RandomCockTailSearchAsyncTask.RandomCockTailListener() {
             @Override
-            public void randomContract(List<RandomCockTailModel> models) {
+            public void randomContract(List<CockTailModel> models) {
                 model_holder.add(models.get(0));
-                RandomCockTailModel model = models.get(0);
+                CockTailModel model = models.get(0);
                 String imageURL = model.getImageURL();
                 Log.d(TAG, imageURL);
                 ImageCockTailSearchAsyncTask imagetask = new ImageCockTailSearchAsyncTask();

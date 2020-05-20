@@ -2,25 +2,25 @@ package com.myveryown.cocktail.network.byID;
 
 import android.os.AsyncTask;
 
-import com.myveryown.cocktail.model.byRandom.RandomCockTailModel;
+import com.myveryown.cocktail.model.CockTailModel;
 import com.myveryown.cocktail.utility.CockTailParser;
 
-public class CockTailSearchAsyncTask extends AsyncTask<String, Void, RandomCockTailModel> {
+public class CockTailSearchAsyncTask extends AsyncTask<String, Void, CockTailModel> {
 
     private CockTailListener listener;
 
     @Override
-    protected RandomCockTailModel doInBackground(String... strings) {
+    protected CockTailModel doInBackground(String... strings) {
         String response = CockTailSearchHelper.searchCockTailWithID(strings[0]);
         if (response != null) {
-            RandomCockTailModel models = CockTailParser.getCockTailMatch(response);
+            CockTailModel models = CockTailParser.getCockTailMatch(response);
             return models;
         }
         return null;
     }
 
     @Override
-    protected void onPostExecute(RandomCockTailModel model) {
+    protected void onPostExecute(CockTailModel model) {
         super.onPostExecute(model);
         listener.contract(model);
 
@@ -28,7 +28,7 @@ public class CockTailSearchAsyncTask extends AsyncTask<String, Void, RandomCockT
     }
 
     public interface CockTailListener {
-        void contract (RandomCockTailModel model);
+        void contract (CockTailModel model);
     }
 
     public void setCockTailListener (CockTailListener listener) {

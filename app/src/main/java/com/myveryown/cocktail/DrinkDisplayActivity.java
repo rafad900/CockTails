@@ -11,7 +11,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.myveryown.cocktail.model.byRandom.RandomCockTailModel;
+import com.myveryown.cocktail.model.CockTailModel;
 import com.myveryown.cocktail.network.URLImage.ImageCockTailSearchAsyncTask;
 import com.myveryown.cocktail.network.byID.CockTailSearchAsyncTask;
 
@@ -50,7 +50,7 @@ public class DrinkDisplayActivity extends AppCompatActivity {
         CockTailSearchAsyncTask task = new CockTailSearchAsyncTask();
         task.setCockTailListener(new CockTailSearchAsyncTask.CockTailListener() {
             @Override
-            public void contract(RandomCockTailModel model) {
+            public void contract(CockTailModel model) {
                 ingredients = model.getIngrients();
                 instructions = model.getInstructions();
                 imageURL = model.getImageURL();
