@@ -28,7 +28,7 @@
         android:layout_height="match_parent">
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:orientation="vertical"
             android:divider="@drawable/divider_for_main"
             android:showDividers="middle">
@@ -44,7 +44,7 @@
                     android:layout_height="wrap_content"
                     android:ems="10"
                     android:inputType="textPersonName"
-                    android:autofillHints="Ingredient" />
+                    android:autofillHints="@string/ingredient_autofill" />
 
                 <Button
                     android:id="@+id/ingredientSearchButton"
@@ -54,6 +54,13 @@
                     app:layout_constraintEnd_toEndOf="parent"/>
             </LinearLayout>
 
+            <TextView
+                android:id="@+id/message_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:visibility="invisible"/>
+
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/ingredient_drink_recycler"
                 android:layout_width="match_parent"
@@ -62,4 +69,4 @@
             </androidx.recyclerview.widget.RecyclerView>
         </LinearLayout>
     </ScrollView>
-</>
+</LinearLayout>

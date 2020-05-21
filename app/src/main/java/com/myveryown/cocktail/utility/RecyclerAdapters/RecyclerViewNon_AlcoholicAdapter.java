@@ -2,10 +2,13 @@ package com.myveryown.cocktail.utility.RecyclerAdapters;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -14,8 +17,14 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.myveryown.cocktail.DrinkDisplayActivity;
 import com.myveryown.cocktail.R;
+import com.myveryown.cocktail.model.CockTailModel;
+import com.myveryown.cocktail.network.URLImage.ImageCockTailSearchAsyncTask;
+import com.myveryown.cocktail.network.byID.CockTailSearchAsyncTask;
+
+import org.w3c.dom.Text;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class RecyclerViewNon_AlcoholicAdapter  extends RecyclerView.Adapter<RecyclerViewNon_AlcoholicAdapter.ViewHolder> {
 
@@ -23,34 +32,33 @@ public class RecyclerViewNon_AlcoholicAdapter  extends RecyclerView.Adapter<Recy
     private static final String IDNUMBER = "ID_NUMBER";
     private static final String NAME = "DRINK_NAME";
 
-    private ArrayList<String> id_drinks;
-    private ArrayList<String> name_drinks;
+    private List<CockTailModel> mDataset;
     private Context mContext;
 
-    public RecyclerViewNon_AlcoholicAdapter(Context context, ArrayList<String> names, ArrayList<String> id) {
+    public RecyclerViewNon_AlcoholicAdapter(Context context, List<CockTailModel> dataset) {
         this.mContext = context;
-        this.id_drinks = id;
-        this.name_drinks = names;
+        this.mDataset = dataset;
     }
 
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.non_alcoholic_recycler_layout, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.general_drink_recycler_view, parent, false);
         ViewHolder holder = new ViewHolder(view);
         return holder;
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder holder, final int position) {
+    public void onBindViewHolder(@NonNull final ViewHolder holder, final int position) {
         Log.d(TAG,"OnBindViewHolder: IT GOT CALLED FOR THE NON ALCOHOLIC");
-        holder.name.setText(name_drinks.get(position));
+        holder.name.setText(mDataset.get(position).getName());
+        holder.image.setImageBitmap(mDataset.get(position).getImage());
         holder.parent.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(mContext, DrinkDisplayActivity.class);
-                intent.putExtra(IDNUMBER, id_drinks.get(position));
-                intent.putExtra(NAME, name_drinks.get(position));
+                intent.putExtra(IDNUMBER, mDataset.get(position).getId());
+                intent.putExtra(NAME, mDataset.get(position).getName());
                 mContext.startActivity(intent);
             }
         });
@@ -58,17 +66,19 @@ public class RecyclerViewNon_AlcoholicAdapter  extends RecyclerView.Adapter<Recy
 
     @Override
     public int getItemCount() {
-        return name_drinks.size();
+        return mDataset.size();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
+        View parent;
         TextView name;
-        RelativeLayout parent;
+        ImageView image;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            this.name = itemView.findViewById(R.id.non_alcoholic_layout_container);
-            this.parent = itemView.findViewById(R.id.non_alcoholic_layout_container_parent);
+            this.parent = itemView.findViewById(R.id.general_drink_parent);
+            this.name = itemView.findViewById(R.id.general_drink_name);
+            this.image = itemView.findViewById(R.id.general_drink_image);
         }
     }
 }

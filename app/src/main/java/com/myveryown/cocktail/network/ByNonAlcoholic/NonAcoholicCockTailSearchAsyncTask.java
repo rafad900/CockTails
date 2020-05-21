@@ -8,7 +8,7 @@ import com.myveryown.cocktail.utility.NameCockTailParser;
 
 import java.util.List;
 
-public class NonAcoholicCockTailSearchAsyncTask extends AsyncTask<String, Void, List<CockTailModel>> {
+public class    NonAcoholicCockTailSearchAsyncTask extends AsyncTask<String, Void, List<CockTailModel>> {
 
     private Non_AlcoholicListener listener;
 

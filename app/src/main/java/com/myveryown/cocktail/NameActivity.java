@@ -22,23 +22,20 @@ public class NameActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager layoutManager;
+    private EditText name_editor;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_name);
 
-        EditText name_editor = findViewById(R.id.name_editor);
-
+        name_editor = findViewById(R.id.name_editor);
 
         recyclerView = findViewById(R.id.alcohol_recycler);
         recyclerView.setHasFixedSize(true);
 
         layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
-
-        mAdapter = new MyNameRecyclerAdapter(drinkNames);
-        recyclerView.setAdapter(mAdapter);
 
         name_editor.setHint(R.string.autofill);
         name_editor.addTextChangedListener(new TextWatcher() {
@@ -71,7 +68,7 @@ public class NameActivity extends AppCompatActivity {
                     temp.add(model);
                 }
             }
-            mAdapter = new MyNameRecyclerAdapter(temp);
+            mAdapter = new MyNameRecyclerAdapter(this, temp);
             recyclerView.swapAdapter(mAdapter, true);
             Log.i(TAG, "This is the size of the drinkName inside if: " + (drinkNames.size()));
         }
@@ -85,7 +82,7 @@ public class NameActivity extends AppCompatActivity {
                     for (int i = 0; i < models.size(); i++) {
                         drinkNames.add(models.get(i));
                     }
-                    mAdapter = new MyNameRecyclerAdapter(drinkNames);
+                    mAdapter = new MyNameRecyclerAdapter(getParent(), drinkNames);
                     recyclerView.setAdapter(mAdapter);
                     Log.i(TAG, "Size of drinkNames" + drinkNames.size());
                 }

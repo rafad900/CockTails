@@ -14,23 +14,23 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.myveryown.cocktail.DrinkDisplayActivity;
 import com.myveryown.cocktail.R;
+import com.myveryown.cocktail.model.CockTailModel;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class RecyclerViewIngredientAdapter extends RecyclerView.Adapter<RecyclerViewIngredientAdapter.ViewHolder> {
     private static final String TAG = "RecyclerViewIngredientA";
     private static final String IDNUMBER = "ID_NUMBER";
     private static final String NAME = "DRINK_NAME";
 
-    private ArrayList<String> mNames;
-    private ArrayList<String> mIDs;
+    private List<CockTailModel> mDataset;
     private Context mContext;
 
 
-    public RecyclerViewIngredientAdapter (Context context, ArrayList<String> names, ArrayList<String> id) {
+    public RecyclerViewIngredientAdapter (Context context, List<CockTailModel> dataset) {
         this.mContext = context;
-        this.mIDs = id;
-        this.mNames = names;
+        this.mDataset = dataset;
     }
 
 
@@ -45,14 +45,14 @@ public class RecyclerViewIngredientAdapter extends RecyclerView.Adapter<Recycler
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, final int position) {
         Log.d(TAG, "onBindHolder: FROM mNAMES was called");
-        holder.name.setText(mNames.get(position));
+        holder.name.setText(mDataset.get(position).getName());
         holder.parent.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Log.d(TAG, "THE INGREDIENT LISTENER WAS CLICEKD");
                 Intent intent = new Intent(mContext, DrinkDisplayActivity.class);
-                intent.putExtra(IDNUMBER, mIDs.get(position));
-                intent.putExtra(NAME, mNames.get(position));
+                intent.putExtra(IDNUMBER, mDataset.get(position).getId());
+                intent.putExtra(NAME, mDataset.get(position).getName());
                 mContext.startActivity(intent);
             }
         });
@@ -60,7 +60,7 @@ public class RecyclerViewIngredientAdapter extends RecyclerView.Adapter<Recycler
 
     @Override
     public int getItemCount() {
-        return mNames.size();
+        return mDataset.size();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {

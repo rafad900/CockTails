@@ -9,5 +9,6 @@
     <string name="main_option4">Random Drink</string>
     <string name="default_image_cdb">Default Image CDB</string>
     <string name="string_search">Search</string>
-
+    <string name="ingredient_autofill">Search Ingredient</string>
+    <string name="non_alcoholic_heading">Non-Alcoholic</string>
 </resources>

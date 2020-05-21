@@ -1,5 +1,9 @@
 package com.myveryown.cocktail.model;
 
+import android.graphics.Bitmap;
+
+import com.myveryown.cocktail.network.URLImage.ImageCockTailSearchAsyncTask;
+
 import java.util.List;
 
 public class CockTailModel {
@@ -10,6 +14,7 @@ public class CockTailModel {
     String instructions;
     String imageURL;
     String alcoholic;
+    Bitmap mimage;
 
     public CockTailModel(String name, List<String> ingredients, String id, String instructions, String imageURL, String alcoholic) {
         this.name = name;
@@ -18,6 +23,7 @@ public class CockTailModel {
         this.imageURL = imageURL;
         this.alcoholic = alcoholic;
         this.instructions = instructions;
+        setImage();
     }
 
     public CockTailModel(String name, String id) {
@@ -27,7 +33,34 @@ public class CockTailModel {
         this.imageURL = "";
         this.alcoholic = "";
         this.instructions = "";
+        setImage();
     }
+
+    public CockTailModel(String name, String id, String imageURL) {
+        this.name = name;
+        this.id = id;
+        this.imageURL = imageURL;
+        this.ingrients = null;
+        this.alcoholic = "";
+        this.instructions = "";
+        setImage();
+    }
+
+    private void setImage() {
+        if (imageURL != "") {
+            ImageCockTailSearchAsyncTask task = new ImageCockTailSearchAsyncTask();
+            task.setImageListener(new ImageCockTailSearchAsyncTask.ImageCockTailListener() {
+                @Override
+                public void ImageContract(Bitmap image) {
+                    mimage = image;
+                }
+            });
+            task.execute(this.imageURL);
+        }
+    }
+
+    public Bitmap getImage() { return mimage; }
+
     public String getName() {
         return name;
     }

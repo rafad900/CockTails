@@ -2,6 +2,7 @@ package com.myveryown.cocktail;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
@@ -14,16 +15,20 @@ import com.myveryown.cocktail.model.CockTailModel;
 import com.myveryown.cocktail.network.URLImage.ImageCockTailSearchAsyncTask;
 import com.myveryown.cocktail.network.byRandom.RandomCockTailSearchAsyncTask;
 
+import java.net.ContentHandler;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
     private static final String TAG = "MainActivity";
+    private static final String IDNUMBER = "ID_NUMBER";
+    private static final String NAME = "DRINK_NAME";
 
     private Button nameActivity;
     private Button ingredientActivity;
     private Button randomActivity;
     private Button nonAlcoholicActivity;
     private ImageView randomDrinkImage;
+    private Context mContext = this;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -84,8 +89,19 @@ public class MainActivity extends AppCompatActivity {
         randomActivity.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(v.getContext(), RandomActivity.class);
-                v.getContext().startActivity(intent);
+                randomActivity.setText("Looking for random drink");
+                RandomCockTailSearchAsyncTask task = new RandomCockTailSearchAsyncTask();
+                task.setRandomCockTailListener(new RandomCockTailSearchAsyncTask.RandomCockTailListener() {
+                    @Override
+                    public void randomContract(List<CockTailModel> models) {
+                        Log.d(TAG, "The random contract listener was clicked");
+                        Intent intent = new Intent(mContext, DrinkDisplayActivity.class);
+                        intent.putExtra(IDNUMBER,  models.get(0).getId());
+                        intent.putExtra(NAME, models.get(0).getName());
+                        mContext.startActivity(intent);
+                    }
+                });
+                task.execute();
             }
         });
     }

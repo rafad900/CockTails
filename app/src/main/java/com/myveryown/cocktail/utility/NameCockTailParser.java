@@ -26,7 +26,7 @@ public class NameCockTailParser {
 
             for (int i = 0; i < matches.length(); i++) {
                 array = matches.getJSONObject(i);
-                CockTailModel model = new CockTailModel(array.getString("strDrink"),array.getString("idDrink"));
+                CockTailModel model = new CockTailModel(array.getString("strDrink"),array.getString("idDrink"), array.getString("strDrinkThumb"));
                 modelList.add(model);
             }
         } catch (JSONException e) {

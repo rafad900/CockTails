@@ -13,8 +13,6 @@
         android:theme="@style/AppTheme">
         <activity android:name="com.myveryown.cocktail.DrinkDisplayActivity"
             android:windowSoftInputMode="adjustNothing"/>
-        <activity android:name="com.myveryown.cocktail.RandomActivity"
-            android:windowSoftInputMode="adjustPan"/>
         <activity android:name="com.myveryown.cocktail.NonAlcoholicActivity"
             android:windowSoftInputMode="adjustPan"/>
         <activity android:name="com.myveryown.cocktail.IngredientActivity"

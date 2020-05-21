@@ -1,5 +1,7 @@
 package com.myveryown.cocktail.utility.RecyclerAdapters;
 
+import android.content.Context;
+import android.content.Intent;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -7,15 +9,21 @@ import android.view.ViewGroup;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.myveryown.cocktail.DrinkDisplayActivity;
 import com.myveryown.cocktail.R;
 import com.myveryown.cocktail.model.CockTailModel;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static androidx.constraintlayout.widget.Constraints.TAG;
 
 public class MyNameRecyclerAdapter extends RecyclerView.Adapter<MyNameRecyclerAdapter.MyViewHolder> {
     private List<CockTailModel> mDataset;
+    private static final String IDNUMBER = "ID_NUMBER";
+    private static final String NAME = "DRINK_NAME";
+    private Context mContext;
 
     public static class MyViewHolder extends RecyclerView.ViewHolder {
         public RelativeLayout parentLayout;
@@ -27,8 +35,9 @@ public class MyNameRecyclerAdapter extends RecyclerView.Adapter<MyNameRecyclerAd
         }
     }
 
-    public MyNameRecyclerAdapter(List<CockTailModel> mDataset) {
+    public MyNameRecyclerAdapter(Context context, List<CockTailModel> mDataset) {
         this.mDataset = mDataset;
+        this.mContext = context;
     }
 
     @Override
@@ -39,9 +48,19 @@ public class MyNameRecyclerAdapter extends RecyclerView.Adapter<MyNameRecyclerAd
     }
 
     @Override
-    public void onBindViewHolder(MyViewHolder holder, int position) {
+    public void onBindViewHolder(MyViewHolder holder, final int position) {
         Log.d(TAG, "OnBindViewHolder was called");
         holder.textView.setText(mDataset.get(position).getName());
+        holder.parentLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.d(TAG, "THE INGREDIENT LISTENER WAS CLICEKD");
+                Intent intent = new Intent(mContext, DrinkDisplayActivity.class);
+                intent.putExtra(IDNUMBER, mDataset.get(position).getId());
+                intent.putExtra(NAME, mDataset.get(position).getName());
+                mContext.startActivity(intent);
+            }
+        });
 
     }
 

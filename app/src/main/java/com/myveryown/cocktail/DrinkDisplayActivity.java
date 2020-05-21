@@ -50,31 +50,31 @@ public class DrinkDisplayActivity extends AppCompatActivity {
         CockTailSearchAsyncTask task = new CockTailSearchAsyncTask();
         task.setCockTailListener(new CockTailSearchAsyncTask.CockTailListener() {
             @Override
-            public void contract(CockTailModel model) {
+            public void contract(final CockTailModel model) {
                 ingredients = model.getIngrients();
                 instructions = model.getInstructions();
-                imageURL = model.getImageURL();
-                ImageCockTailSearchAsyncTask imagetask = new ImageCockTailSearchAsyncTask();
-                imagetask.setImageListener(new ImageCockTailSearchAsyncTask.ImageCockTailListener() {
+                ImageCockTailSearchAsyncTask task = new ImageCockTailSearchAsyncTask();
+                task.setImageListener(new ImageCockTailSearchAsyncTask.ImageCockTailListener() {
                     @Override
                     public void ImageContract(Bitmap image) {
                         cockTailImageHolder.setImageBitmap(image);
                     }
                 });
-
-                imagetask.execute(imageURL);
-                Log.d(TAG, "HERE IS THE IMAGE URL: " + imageURL);
+                task.execute(model.getImageURL());
             }
         });
 
         Log.d(TAG, "HERE IS THE IMAGE URL AFTER: " + imageURL);
         task.execute(id);
 
-
         ingredientButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                instructionOrIngredients.setText(ingredients.toString());
+                String temp = "";
+                for (int i = 0; i < ingredients.size(); i++) {
+                    temp += (i + 1) + " - " + ingredients.get(i) + "\n";
+                }
+                instructionOrIngredients.setText(temp);
             }
         });
 
