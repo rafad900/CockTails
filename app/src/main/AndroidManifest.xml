@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.myveryown.cocktail">
+    package="com.rememberthekey.cocktail">
 
     <uses-permission android:name="android.permission.INTERNET" />
 
@@ -11,15 +11,15 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name="com.myveryown.cocktail.DrinkDisplayActivity"
+        <activity android:name="com.rememberthekey.cocktail.DrinkDisplayActivity"
             android:windowSoftInputMode="adjustNothing"/>
-        <activity android:name="com.myveryown.cocktail.NonAlcoholicActivity"
+        <activity android:name="com.rememberthekey.cocktail.NonAlcoholicActivity"
             android:windowSoftInputMode="adjustPan"/>
-        <activity android:name="com.myveryown.cocktail.IngredientActivity"
+        <activity android:name="com.rememberthekey.cocktail.IngredientActivity"
             android:windowSoftInputMode="adjustPan"/>
-        <activity android:name="com.myveryown.cocktail.NameActivity"
+        <activity android:name="com.rememberthekey.cocktail.NameActivity"
             android:windowSoftInputMode="adjustPan"/>
-        <activity android:name="com.myveryown.cocktail.MainActivity"
+        <activity android:name="com.rememberthekey.cocktail.MainActivity"
             android:windowSoftInputMode="stateAlwaysHidden">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

@@ -5,7 +5,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".IngredientActivity"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:divider="@drawable/divider_for_main"
+    android:showDividers="middle">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/main_toolbar"
@@ -51,7 +53,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/string_search"
-                    app:layout_constraintEnd_toEndOf="parent"/>
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:background="@drawable/rounded_corners"
+                    android:textColor="@color/white"/>
             </LinearLayout>
 
             <TextView
