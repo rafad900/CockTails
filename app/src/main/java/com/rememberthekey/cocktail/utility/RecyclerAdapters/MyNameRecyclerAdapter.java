@@ -60,7 +60,6 @@ public class MyNameRecyclerAdapter extends RecyclerView.Adapter<MyNameRecyclerAd
                 mContext.startActivity(intent);
             }
         });
-
     }
 
     @Override
